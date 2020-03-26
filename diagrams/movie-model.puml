@@ -1,0 +1,48 @@
+@startuml
+package "Catalog Movie" #ddddd {
+    Movie o-- Actor
+    User *--"1" Member
+    MovieCatalog *-- Movie
+    MovieCatalog *-- Price
+    MovieRental *-- Member
+    MovieRental *-- MovieCatalog
+    enum Status {
+
+    }
+    class Movie {
+        String title
+        String dob
+        Date expireDate
+        String description
+        short rate
+        string registeringUser
+        string updatingUser
+        boolean deleted
+    }
+    class Actor {
+        String name
+    }
+    class User {
+        String name
+    }
+    class Price {
+        float price
+        Date date
+    }
+    class Member {
+        String userName
+        String name
+        String telephone
+    }
+    class MovieCatalog {
+        int numberCopies
+    }
+    class MovieRental {
+        Date date
+        Date returnDate
+        Date returnedDate
+        float price
+        Status status
+    }
+}
+@enduml
