@@ -16,7 +16,8 @@ public class Actor implements Identifiable<Long> {
 
     @Column(name = "name", length = 100, nullable = false)
     private String name;
-    @JoinTable(name = "actor",
+
+    @JoinTable(name = "actor_movies",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "id")
     )

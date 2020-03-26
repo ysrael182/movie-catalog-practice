@@ -36,14 +36,7 @@ public class Movie implements Identifiable<Long> {
     @Column(columnDefinition="tinyint(1) default 0")
     private boolean deleted;
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "actor",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id")
-    )
+    @ManyToMany(mappedBy = "movie")
     private List<Actor> actors;
 
     public void addActor(Actor actor) {

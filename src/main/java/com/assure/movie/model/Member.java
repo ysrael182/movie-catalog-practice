@@ -24,7 +24,7 @@ public class Member implements Identifiable<Long> {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Member member;
+    private User user;
 
     public Long getId() {
         return this.id;
@@ -58,11 +58,11 @@ public class Member implements Identifiable<Long> {
         this.telephone = telephone;
     }
 
-    public Member getMember() {
-        return member;
+    public User getUser() {
+        return user;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

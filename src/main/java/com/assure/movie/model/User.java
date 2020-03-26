@@ -42,6 +42,14 @@ public class User implements Identifiable<Long> {
     }
 
     public void setMember(Member member) {
+        if (member == null) {
+            if (this.member != null) {
+                this.member.setUser(null);
+            }
+        }
+        else {
+            member.setUser(this);
+        }
         this.member = member;
     }
 }
