@@ -9,6 +9,13 @@ package "Catalog Movie" #ddddd {
     enum Status {
 
     }
+    enum Rate {
+        G
+        PG
+        PG-13
+        R
+        NG-17
+    }
     class Movie {
         String title
         String dob

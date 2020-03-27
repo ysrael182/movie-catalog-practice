@@ -1,22 +1,32 @@
 package com.assure.movie.model;
 
+import com.assure.movie.model.embedable.MovieCatalogId;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "movie_catalog")
-public class MovieCatalog implements Identifiable<Long> {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+public class MovieCatalog implements Identifiable<MovieCatalogId> {
+    @EmbeddedId
+    private MovieCatalogId id;
+
+    @MapsId("id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(
+                    name = "movie_id",
+                    referencedColumnName = "movie_id")
+    })
+    private Movie movie;
 
     @Column(name = "number_copies")
     private int numberCopies;
 
-    public Long getId() {
+    public MovieCatalogId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(MovieCatalogId id) {
         this.id = id;
     }
 
@@ -26,5 +36,13 @@ public class MovieCatalog implements Identifiable<Long> {
 
     public void setNumberCopies(int numberCopies) {
         this.numberCopies = numberCopies;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 }

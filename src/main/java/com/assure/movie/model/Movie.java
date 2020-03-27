@@ -4,7 +4,6 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,6 +11,7 @@ import java.util.Set;
 public class Movie implements Identifiable<Long> {
 
     @Id
+    @Column(name="movie_id")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
@@ -39,6 +39,9 @@ public class Movie implements Identifiable<Long> {
 
     @ManyToMany(mappedBy = "movies")
     private Set<Actor> actors;
+
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private MovieCatalog member;
 
     public void addActor(Actor actor) {
         this.actors.add(actor);
@@ -120,5 +123,13 @@ public class Movie implements Identifiable<Long> {
 
     public void setActors(Set<Actor> actors) {
         this.actors = actors;
+    }
+
+    public MovieCatalog getMember() {
+        return member;
+    }
+
+    public void setMember(MovieCatalog member) {
+        this.member = member;
     }
 }
