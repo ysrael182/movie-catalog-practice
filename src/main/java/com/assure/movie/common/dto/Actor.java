@@ -1,4 +1,4 @@
-package com.assure.movie.dto;
+package com.assure.movie.common.dto;
 
 public class Actor {
 

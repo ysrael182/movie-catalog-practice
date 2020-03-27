@@ -1,4 +1,4 @@
-package com.assure.movie.common;
+package com.assure.movie.common.enums;
 /**
  * @author Israel Yasis
  */

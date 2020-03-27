@@ -1,7 +1,6 @@
 package com.assure.movie.model;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 /**
