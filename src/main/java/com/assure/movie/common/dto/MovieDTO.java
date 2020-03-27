@@ -6,13 +6,13 @@ import java.util.List;
 /**
  * @author Israel Yasis
  */
-public class Movie {
+public class MovieDTO implements DTO {
     private String title;
     private String year;
     private Rate rate;
     private Date availableDate;
     private int numberOfCopies;
-    private List<Actor> actors;
+    private List<ActorDTO> actors;
 
     public String getTitle() {
         return title;
@@ -54,11 +54,11 @@ public class Movie {
         this.numberOfCopies = numberOfCopies;
     }
 
-    public List<Actor> getActors() {
+    public List<ActorDTO> getActors() {
         return actors;
     }
 
-    public void setActors(List<Actor> actors) {
+    public void setActors(List<ActorDTO> actors) {
         this.actors = actors;
     }
 }

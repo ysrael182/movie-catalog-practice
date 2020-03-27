@@ -1,6 +1,8 @@
 package com.assure.movie.common.dto;
-
-public class Actor {
+/**
+ * @author Israel Yasis
+ */
+public class ActorDTO implements DTO{
 
     private String name;
 

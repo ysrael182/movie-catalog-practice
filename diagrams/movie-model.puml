@@ -4,7 +4,7 @@ package "Catalog Movie" #ddddd {
     User *--"0 ... 1" Member
     MovieCatalog *-- Movie
     MovieCatalog *-- Price
-    MovieRental *-- Member
+    MovieRental o-- Member
     MovieRental *-- Movie
     enum Status {
 
