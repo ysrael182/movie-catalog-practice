@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -36,8 +37,8 @@ public class Movie implements Identifiable<Long> {
     @Column(columnDefinition="tinyint(1) default 0")
     private boolean deleted;
 
-    @ManyToMany(mappedBy = "movie")
-    private List<Actor> actors;
+    @ManyToMany(mappedBy = "movies")
+    private Set<Actor> actors;
 
     public void addActor(Actor actor) {
         this.actors.add(actor);
@@ -113,11 +114,11 @@ public class Movie implements Identifiable<Long> {
         this.deleted = deleted;
     }
 
-    public List<Actor> getActors() {
+    public Set<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(List<Actor> actors) {
+    public void setActors(Set<Actor> actors) {
         this.actors = actors;
     }
 }

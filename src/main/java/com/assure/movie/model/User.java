@@ -17,8 +17,7 @@ public class User implements Identifiable<Long> {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Member member;
 
     public Long getId() {

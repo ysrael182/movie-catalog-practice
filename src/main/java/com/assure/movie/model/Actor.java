@@ -2,6 +2,7 @@ package com.assure.movie.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Israel Yasis
@@ -17,11 +18,12 @@ public class Actor implements Identifiable<Long> {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @JoinTable(name = "actor_movies",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id")
+    @ManyToMany
+    @JoinTable(name = "actor_movie",
+            joinColumns = @JoinColumn(name = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
     )
-    private List<Movie> movies;
+    private Set<Movie> movies;
 
     public void addMovie(Movie movie) {
         this.movies.add(movie);
@@ -49,11 +51,11 @@ public class Actor implements Identifiable<Long> {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
 }

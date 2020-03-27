@@ -26,6 +26,9 @@ public class Member implements Identifiable<Long> {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private MovieRental member;
+
     public Long getId() {
         return this.id;
     }
@@ -65,4 +68,13 @@ public class Member implements Identifiable<Long> {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public MovieRental getMember() {
+        return member;
+    }
+
+    public void setMember(MovieRental member) {
+        this.member = member;
+    }
+
 }
