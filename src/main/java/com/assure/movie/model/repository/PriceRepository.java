@@ -1,6 +1,6 @@
-package com.assure.movie.repository;
+package com.assure.movie.model.repository;
 
-import com.assure.movie.model.Price;
+import com.assure.movie.model.domain.Price;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

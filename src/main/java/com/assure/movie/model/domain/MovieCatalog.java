@@ -1,6 +1,6 @@
-package com.assure.movie.model;
+package com.assure.movie.model.domain;
 
-import com.assure.movie.model.embedable.MovieCatalogId;
+import com.assure.movie.model.domain.embedable.MovieCatalogId;
 
 import javax.persistence.*;
 

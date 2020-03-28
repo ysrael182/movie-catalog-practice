@@ -1,4 +1,4 @@
-package com.assure.movie.model.embedable;
+package com.assure.movie.model.domain.embedable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

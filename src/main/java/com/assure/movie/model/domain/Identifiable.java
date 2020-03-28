@@ -1,10 +1,10 @@
-package com.assure.movie.model;
+package com.assure.movie.model.domain;
 
 import java.io.Serializable;
 /**
  * @author Israel Yasis
  */
-interface Identifiable<T> extends Serializable {
+public interface Identifiable<T> extends Serializable {
 
     void setId(T id);
 

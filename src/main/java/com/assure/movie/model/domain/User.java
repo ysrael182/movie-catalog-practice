@@ -1,7 +1,6 @@
-package com.assure.movie.model;
+package com.assure.movie.model.domain;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 /**
  * @author Israel Yasis

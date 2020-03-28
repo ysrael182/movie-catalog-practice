@@ -1,4 +1,4 @@
-package com.assure.movie.common.dto;
+package com.assure.movie.dto;
 /**
  * @author Israel Yasis
  */

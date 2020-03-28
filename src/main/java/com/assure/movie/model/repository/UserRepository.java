@@ -1,6 +1,6 @@
-package com.assure.movie.repository;
+package com.assure.movie.model.repository;
 
-import com.assure.movie.model.Actor;
+import com.assure.movie.model.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * @author Israel Yasis
  */
 @Repository
-public interface ActorRepository extends JpaRepository<Actor, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

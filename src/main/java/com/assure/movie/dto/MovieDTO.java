@@ -1,4 +1,4 @@
-package com.assure.movie.common.dto;
+package com.assure.movie.dto;
 
 import com.assure.movie.common.enums.Rate;
 import java.util.Date;
@@ -18,47 +18,53 @@ public class MovieDTO implements DTO {
         return title;
     }
 
-    public void setTitle(String title) {
+    public MovieDTO setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public MovieDTO setYear(String year) {
         this.year = year;
+        return this;
     }
 
     public Rate getRate() {
         return rate;
     }
 
-    public void setRate(Rate rate) {
+    public MovieDTO setRate(Rate rate) {
         this.rate = rate;
+        return this;
     }
 
     public Date getAvailableDate() {
         return availableDate;
     }
 
-    public void setAvailableDate(Date availableDate) {
+    public MovieDTO setAvailableDate(Date availableDate) {
         this.availableDate = availableDate;
+        return this;
     }
 
     public int getNumberOfCopies() {
         return numberOfCopies;
     }
 
-    public void setNumberOfCopies(int numberOfCopies) {
+    public MovieDTO setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;
+        return this;
     }
 
     public List<ActorDTO> getActors() {
         return actors;
     }
 
-    public void setActors(List<ActorDTO> actors) {
+    public MovieDTO setActors(List<ActorDTO> actors) {
         this.actors = actors;
+        return this;
     }
 }

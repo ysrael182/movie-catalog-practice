@@ -1,6 +1,6 @@
-package com.assure.movie.model;
+package com.assure.movie.model.domain;
 
-import org.hibernate.annotations.Type;
+import com.assure.movie.common.enums.Rate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,9 +24,8 @@ public class Movie implements Identifiable<Long> {
     @Column(name = "description", length = 255, nullable = true)
     private String description;
 
-    @Column(columnDefinition = "SMALLINT", name = "rate", nullable = true)
-    @Type(type = "org.hibernate.type.ShortType")
-    private short rate;
+    @Column(name = "rate", length = 10, nullable = true)
+    private Rate rate;
 
     @Column(name = "registering_user", length = 255, nullable = false)
     private String registeringUser;
@@ -85,11 +84,11 @@ public class Movie implements Identifiable<Long> {
         this.description = description;
     }
 
-    public short getRate() {
+    public Rate getRate() {
         return rate;
     }
 
-    public void setRate(short rate) {
+    public void setRate(Rate rate) {
         this.rate = rate;
     }
 
