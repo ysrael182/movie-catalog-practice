@@ -1,7 +1,7 @@
 package com.assure.movie.dto;
 
 import com.assure.movie.model.domain.Actor;
-
+@Deprecated
 public class BuilderActorDTO implements BuilderDTO<ActorDTO> {
 
     private Actor actorModel;

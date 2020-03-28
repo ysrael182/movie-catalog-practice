@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * @author Israel Yasis
@@ -25,7 +27,9 @@ public class MovieService {
         return  this.movieRepository.findById(id).orElseThrow(()
                 -> new NotFoundErrorException("Not found movie with id: "+ id));
     }
-
+    public List<Movie> getMovies() {
+        return this.movieRepository.findByDeleted(false);
+    }
     @Transactional
     public Movie saveMovie(Movie movie) {
         return this.movieRepository.save(movie);

@@ -24,7 +24,8 @@ public class Movie implements Identifiable<Long> {
     @Column(name = "description", length = 255, nullable = true)
     private String description;
 
-    @Column(name = "rate", length = 10, nullable = true)
+    @Column(name = "rate", length = 10, nullable = false)
+    @Enumerated(EnumType.STRING)
     private Rate rate;
 
     @Column(name = "registering_user", length = 255, nullable = false)
@@ -33,7 +34,7 @@ public class Movie implements Identifiable<Long> {
     @Column(name = "updating_user", length = 255, nullable = false)
     private String updatingUser;
 
-    @Column(columnDefinition="tinyint(1) default 0")
+    @Column(name="deleted", columnDefinition="tinyint(1) default 0")
     private boolean deleted;
 
     @ManyToMany(mappedBy = "movies")

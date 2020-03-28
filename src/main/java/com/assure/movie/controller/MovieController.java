@@ -1,16 +1,19 @@
 package com.assure.movie.controller;
 
+import com.assure.movie.converter.MovieConverter;
 import com.assure.movie.dto.BuilderMovieDTO;
 import com.assure.movie.dto.MovieDTO;
 import com.assure.movie.dto.domain.BuilderMovieModel;
 import com.assure.movie.model.domain.Movie;
 import com.assure.movie.service.MovieService;
 import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,20 +24,31 @@ public class MovieController {
 
     private MovieService movieService;
 
+    private MovieConverter movieConverter;
+
     @Autowired
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, MovieConverter movieConverter) {
         this.movieService = movieService;
+        this.movieConverter = movieConverter;
     }
     @RequestMapping(value = "/movies/{movieId}", method = RequestMethod.GET)
     public ResponseEntity<MovieDTO> getMovie(@PathVariable Long movieId) {
+        Movie movieModel = this.movieService.getMovie(movieId);
+        MovieDTO movieDTO = this.movieConverter.createFrom(movieModel);
         return new ResponseEntity<>(
-                (new BuilderMovieDTO()).setMovieModel(this.movieService.getMovie(movieId)).build(),
+                movieDTO,
                 HttpStatus.OK
         );
     }
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
     public ResponseEntity<List<MovieDTO>> getMovies() {
-        return null;
+        List<Movie> movies = this.movieService.getMovies();
+        List<MovieDTO> moviesDTO = new ArrayList<>();
+        movies.forEach(movie -> moviesDTO.add(this.movieConverter.createFrom(movie)));
+        return  new ResponseEntity<>(
+                moviesDTO,
+                HttpStatus.OK
+        );
     }
 
     @RequestMapping(value = "/movies", method = RequestMethod.POST)
@@ -48,7 +62,9 @@ public class MovieController {
     }
 
     @RequestMapping(value = "/movies/{movieId}", method = RequestMethod.PUT)
-
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Not content")
+    })
     public ResponseEntity<MovieDTO> createMovie(@RequestBody MovieDTO movieDTO, @PathVariable Long movieId) {
         Movie movieModel = this.movieService.getMovie(movieId);
         movieModel = (new BuilderMovieModel())
