@@ -2,7 +2,7 @@ package com.assure.movie.dto.domain;
 
 import com.assure.movie.dto.MovieDTO;
 import com.assure.movie.model.domain.Movie;
-
+@Deprecated
 public class BuilderMovieModel implements BuilderModel<Movie> {
 
     private MovieDTO movieDTO;

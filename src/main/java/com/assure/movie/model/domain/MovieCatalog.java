@@ -13,9 +13,9 @@ public class MovieCatalog implements Identifiable<MovieCatalogId> {
     @MapsId("id")
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumns({
-            @JoinColumn(
-                    name = "movie_id",
-                    referencedColumnName = "movie_id")
+        @JoinColumn(
+            name = "movie_id",
+            referencedColumnName = "movie_id")
     })
     private Movie movie;
 

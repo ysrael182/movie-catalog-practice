@@ -1,0 +1,30 @@
+package com.assure.movie.converter;
+
+import com.assure.movie.dto.ActorDTO;
+import com.assure.movie.model.domain.Actor;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+
+@Component
+@RequestScope
+public class ActorConverter implements GenericConverter<Actor, ActorDTO> {
+
+    @Override
+    public Actor createFrom(final ActorDTO dto) {
+        return updateEntity(new Actor(), dto);
+    }
+
+    @Override
+    public ActorDTO createFrom(final Actor entity) {
+        ActorDTO actorDTO = new ActorDTO();
+        actorDTO.setName(entity.getName());
+        return actorDTO;
+    }
+    @Override
+    public Actor updateEntity(final Actor entity,
+                                final ActorDTO dto) {
+
+        entity.setName(dto.getName());
+        return entity;
+    }
+}

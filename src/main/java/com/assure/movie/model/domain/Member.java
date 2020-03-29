@@ -1,6 +1,7 @@
 package com.assure.movie.model.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 /**
  * @author Israel Yasis
@@ -14,6 +15,7 @@ public class Member implements Identifiable<Long> {
     private Long id;
 
     @Column(name = "user_name", length = 25, nullable = false)
+    @Email(message = "Email should be valid")
     private String userName;
 
     @Column(name = "name", length = 50, nullable = false)

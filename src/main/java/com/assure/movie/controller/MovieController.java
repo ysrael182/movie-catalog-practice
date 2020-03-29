@@ -1,9 +1,12 @@
 package com.assure.movie.controller;
 
+import com.assure.movie.converter.ActorConverter;
 import com.assure.movie.converter.MovieConverter;
+import com.assure.movie.dto.ActorDTO;
 import com.assure.movie.dto.BuilderMovieDTO;
 import com.assure.movie.dto.MovieDTO;
 import com.assure.movie.dto.domain.BuilderMovieModel;
+import com.assure.movie.model.domain.Actor;
 import com.assure.movie.model.domain.Movie;
 import com.assure.movie.service.MovieService;
 import io.swagger.annotations.ApiResponse;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Israel Yasis
@@ -26,15 +30,19 @@ public class MovieController {
 
     private MovieConverter movieConverter;
 
+    private ActorConverter actorConverter;
     @Autowired
-    public MovieController(MovieService movieService, MovieConverter movieConverter) {
+    public MovieController(
+            MovieService movieService,
+            MovieConverter movieConverter,
+            ActorConverter actorConverter) {
         this.movieService = movieService;
         this.movieConverter = movieConverter;
+        this.actorConverter = actorConverter;
     }
     @RequestMapping(value = "/movies/{movieId}", method = RequestMethod.GET)
     public ResponseEntity<MovieDTO> getMovie(@PathVariable Long movieId) {
-        Movie movieModel = this.movieService.getMovie(movieId);
-        MovieDTO movieDTO = this.movieConverter.createFrom(movieModel);
+        MovieDTO movieDTO = this.movieConverter.createFrom(this.movieService.getMovie(movieId));
         return new ResponseEntity<>(
                 movieDTO,
                 HttpStatus.OK
@@ -44,7 +52,14 @@ public class MovieController {
     public ResponseEntity<List<MovieDTO>> getMovies() {
         List<Movie> movies = this.movieService.getMovies();
         List<MovieDTO> moviesDTO = new ArrayList<>();
-        movies.forEach(movie -> moviesDTO.add(this.movieConverter.createFrom(movie)));
+        movies.forEach(movie -> {
+            MovieDTO movieDTO = this.movieConverter.createFrom(movie);
+            Set<Actor> actors = movie.getActors();
+            List<ActorDTO> actorDTOs = new ArrayList<>();
+            actors.forEach(actor -> actorDTOs.add(this.actorConverter.createFrom(actor)));
+            movieDTO.setActors(actorDTOs);
+            moviesDTO.add(movieDTO);
+        });
         return  new ResponseEntity<>(
                 moviesDTO,
                 HttpStatus.OK
@@ -66,10 +81,10 @@ public class MovieController {
             @ApiResponse(code = 204, message = "Not content")
     })
     public ResponseEntity<MovieDTO> createMovie(@RequestBody MovieDTO movieDTO, @PathVariable Long movieId) {
-        Movie movieModel = this.movieService.getMovie(movieId);
-        movieModel = (new BuilderMovieModel())
-                        .setMovieDTO(movieDTO).setMovieModel(movieModel).build();
-        this.movieService.saveMovie(movieModel);
+        this.movieService.getMovie(movieId);
+        Movie movie = this.movieConverter.createFrom(movieDTO);
+        movie.setId(movieId);
+        this.movieService.saveMovie(movie);
         //this controller can return 200 ok with content ?
         return new ResponseEntity<>(
                 HttpStatus.NO_CONTENT

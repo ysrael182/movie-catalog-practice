@@ -9,3 +9,11 @@ INSERT INTO movie (movie_id, title, description, rate, registering_user, updatin
 INSERT INTO actor_movie (actor_id, movie_id) VALUES
   ('1', '1'),
   ('2', '2');
+
+INSERT INTO user (id, name) VALUES
+  ('1', 'Israel'),
+  ('2', 'Yasis');
+
+INSERT INTO member (id, name, telephone, user_name, user_id) VALUES
+  ('1', 'Israel', '76990278', 'ysra182@gmail.com', '1');
+
