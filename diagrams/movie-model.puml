@@ -1,7 +1,7 @@
 @startuml
 package "Catalog Movie" #ddddd {
     Movie o-- Actor
-    User *--"0 ... 1" Member
+
     MovieCatalog *-- Movie
     MovieCatalog *-- Price
     MovieRental o-- Member

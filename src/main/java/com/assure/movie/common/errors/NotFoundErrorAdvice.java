@@ -1,4 +1,4 @@
-package com.assure.movie.errors;
+package com.assure.movie.common.errors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.assure.movie.errors;
+package com.assure.movie.common.errors;
 
 /**
  * @author Israel Yasis

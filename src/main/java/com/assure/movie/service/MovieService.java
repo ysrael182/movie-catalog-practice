@@ -1,6 +1,6 @@
 package com.assure.movie.service;
 
-import com.assure.movie.errors.NotFoundErrorException;
+import com.assure.movie.common.errors.NotFoundErrorException;
 import com.assure.movie.model.domain.Movie;
 import com.assure.movie.model.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;

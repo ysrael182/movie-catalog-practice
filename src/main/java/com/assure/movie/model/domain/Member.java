@@ -23,11 +23,11 @@ public class Member implements Identifiable<Long> {
 
     @Column(name = "telephone", length = 50, nullable = false)
     private String telephone;
-
+    /*
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
+    */
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private MovieRental member;
 
@@ -62,14 +62,14 @@ public class Member implements Identifiable<Long> {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-
+    /*
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
+    }*/
 
     public MovieRental getMember() {
         return member;

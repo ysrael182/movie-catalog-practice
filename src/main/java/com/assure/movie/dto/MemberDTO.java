@@ -7,9 +7,9 @@ import javax.validation.constraints.Email;
  */
 public class MemberDTO implements DTO {
     @Email(message = "Email should be valid")
-   private String userName;
-   private String name;
-   private String telephone;
+    private String userName;
+    private String name;
+    private String telephone;
 
     public String getUserName() {
         return userName;

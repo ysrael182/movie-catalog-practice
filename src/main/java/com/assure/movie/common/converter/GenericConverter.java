@@ -1,11 +1,7 @@
-package com.assure.movie.converter;
+package com.assure.movie.common.converter;
 
 import com.assure.movie.dto.DTO;
 import com.assure.movie.model.domain.Identifiable;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Israel Yasis

@@ -1,10 +1,12 @@
-package com.assure.movie.converter;
+package com.assure.movie.common.converter;
 
 import com.assure.movie.dto.MovieDTO;
 import com.assure.movie.model.domain.Movie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
-
+/**
+ * @author Israel Yasis
+ */
 @Component
 @RequestScope
 public class MovieConverter implements GenericConverter<Movie, MovieDTO> {
@@ -13,6 +15,7 @@ public class MovieConverter implements GenericConverter<Movie, MovieDTO> {
     public Movie createFrom(final MovieDTO dto) {
         return updateEntity(new Movie(), dto);
     }
+
     @Override
     public MovieDTO createFrom(final Movie entity) {
         MovieDTO movieDTO = new MovieDTO();

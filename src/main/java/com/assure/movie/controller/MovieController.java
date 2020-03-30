@@ -1,9 +1,8 @@
 package com.assure.movie.controller;
 
-import com.assure.movie.converter.ActorConverter;
-import com.assure.movie.converter.MovieConverter;
+import com.assure.movie.common.converter.ActorConverter;
+import com.assure.movie.common.converter.MovieConverter;
 import com.assure.movie.dto.ActorDTO;
-import com.assure.movie.dto.BuilderMovieDTO;
 import com.assure.movie.dto.MovieDTO;
 import com.assure.movie.dto.domain.BuilderMovieModel;
 import com.assure.movie.model.domain.Actor;
@@ -24,7 +23,7 @@ import java.util.Set;
  * @author Israel Yasis
  */
 @RestController
-public class MovieController {
+public class MovieController extends ApiController {
 
     private MovieService movieService;
 
@@ -35,7 +34,8 @@ public class MovieController {
     public MovieController(
             MovieService movieService,
             MovieConverter movieConverter,
-            ActorConverter actorConverter) {
+            ActorConverter actorConverter
+    ) {
         this.movieService = movieService;
         this.movieConverter = movieConverter;
         this.actorConverter = actorConverter;

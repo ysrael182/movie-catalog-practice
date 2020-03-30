@@ -15,10 +15,10 @@ public class User implements Identifiable<Long> {
 
     @Column(name = "name", length = 100, nullable = false)
     private String name;
-
+    /*
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Member member;
-
+    */
     public Long getId() {
         return id;
     }
@@ -35,7 +35,7 @@ public class User implements Identifiable<Long> {
         this.name = name;
     }
 
-    public Member getMember() {
+    /*public Member getMember() {
         return member;
     }
 
@@ -49,5 +49,5 @@ public class User implements Identifiable<Long> {
             member.setUser(this);
         }
         this.member = member;
-    }
+    }*/
 }

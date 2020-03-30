@@ -13,7 +13,7 @@ public class Price implements Identifiable<Long> {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "price",  updatable=false, precision=12, scale=2)
+    @Column(name = "price",  updatable=false, precision = 12, scale=2)
     private BigDecimal price;
 
     public Long getId() {
