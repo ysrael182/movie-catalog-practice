@@ -19,7 +19,8 @@ public class Movie implements Identifiable<Long> {
     private String title;
 
     @Temporal(TemporalType.DATE)
-    private Date dob;
+    @Column(name = "year")
+    private Date year;
 
     @Column(name = "description", length = 255, nullable = true)
     private String description;
@@ -42,6 +43,9 @@ public class Movie implements Identifiable<Long> {
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private MovieCatalog member;
+
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private MovieRental movieRental;
 
     public void addActor(Actor actor) {
         this.actors.add(actor);
@@ -69,12 +73,12 @@ public class Movie implements Identifiable<Long> {
         this.title = title;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getYear() {
+        return this.year;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setYear(Date year) {
+        this.year = year;
     }
 
     public String getDescription() {
@@ -131,5 +135,13 @@ public class Movie implements Identifiable<Long> {
 
     public void setMember(MovieCatalog member) {
         this.member = member;
+    }
+
+    public MovieRental getMovieRental() {
+        return movieRental;
+    }
+
+    public void setMovieRental(MovieRental movieRental) {
+        this.movieRental = movieRental;
     }
 }

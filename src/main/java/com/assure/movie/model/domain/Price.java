@@ -10,11 +10,15 @@ import java.math.BigDecimal;
 @Table(name = "price")
 public class Price implements Identifiable<Long> {
     @Id
+    @Column(name="price_id")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     @Column(name = "price",  updatable=false, precision = 12, scale=2)
     private BigDecimal price;
+
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private MovieCatalog movieCatalog;
 
     public Long getId() {
         return id;
@@ -24,4 +28,19 @@ public class Price implements Identifiable<Long> {
         this.id = id;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public MovieCatalog getMovieCatalog() {
+        return movieCatalog;
+    }
+
+    public void setMovieCatalog(MovieCatalog movieCatalog) {
+        this.movieCatalog = movieCatalog;
+    }
 }

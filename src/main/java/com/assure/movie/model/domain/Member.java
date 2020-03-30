@@ -29,7 +29,7 @@ public class Member implements Identifiable<Long> {
     private User user;
     */
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private MovieRental member;
+    private MovieRental movieRental;
 
     public Long getId() {
         return this.id;
@@ -71,12 +71,12 @@ public class Member implements Identifiable<Long> {
         this.user = user;
     }*/
 
-    public MovieRental getMember() {
-        return member;
+    public MovieRental getMovieRental() {
+        return this.movieRental;
     }
 
-    public void setMember(MovieRental member) {
-        this.member = member;
+    public void setMovieRental(MovieRental movieRental) {
+        this.movieRental = movieRental;
     }
 
 }

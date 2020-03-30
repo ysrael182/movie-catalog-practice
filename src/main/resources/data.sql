@@ -17,5 +17,5 @@ INSERT INTO user (id, name) VALUES
 INSERT INTO member (id, name, telephone, user_name) VALUES
   ('1', 'Israel', '76990278', 'ysra182@gmail.com');
 
-INSERT INTO price (id, price) VALUES
+INSERT INTO price (price_id, price) VALUES
   ('1', 12.90);

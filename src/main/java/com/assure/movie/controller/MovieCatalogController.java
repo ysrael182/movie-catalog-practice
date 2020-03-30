@@ -1,23 +1,18 @@
 package com.assure.movie.controller;
 
-import com.assure.movie.common.converter.ActorConverter;
-import com.assure.movie.common.converter.MovieConverter;
-import com.assure.movie.dto.ActorDTO;
-import com.assure.movie.dto.MovieDTO;
-import com.assure.movie.dto.domain.BuilderMovieModel;
-import com.assure.movie.model.domain.Actor;
+import com.assure.movie.common.converter.MovieCatalogConverter;
+import com.assure.movie.dto.MovieCatalogDTO;
 import com.assure.movie.model.domain.Movie;
+import com.assure.movie.model.domain.MovieCatalog;
+import com.assure.movie.model.domain.Price;
+import com.assure.movie.service.MovieCatalogService;
 import com.assure.movie.service.MovieService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import com.assure.movie.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * @author Israel Yasis
@@ -25,13 +20,36 @@ import java.util.Set;
 @RestController
 public class MovieCatalogController extends ApiController {
 
+    private PriceService priceService;
+    private MovieService movieService;
+    private MovieCatalogConverter movieCatalogConverter;
+    private MovieCatalogService movieCatalogService;
 
-    @RequestMapping(value = "/catalog-entries/movies/{movieId}/prices/{priceId}", method = RequestMethod.POST)
-    public ResponseEntity<MovieDTO> getMovie(
-            @PathVariable("movieId") Long movieId,
-            @PathVariable("priceId") Long PriceId
+    @Autowired
+    public MovieCatalogController(
+        MovieService movieService,
+        PriceService priceService,
+        MovieCatalogConverter movieCatalogConverter,
+        MovieCatalogService movieCatalogService
     ) {
-        return  null;
+        this.movieService = movieService;
+        this.priceService = priceService;
+        this.movieCatalogConverter = movieCatalogConverter;
+        this.movieCatalogService = movieCatalogService;
+    }
+    @RequestMapping(value = "/catalog-entries/", method = RequestMethod.POST)
+    public ResponseEntity<MovieCatalogDTO> saveMovieCatalog(
+        @RequestBody MovieCatalogDTO movieCatalogDTO
+    ) {
+        Movie movie = this.movieService.getMovie(movieCatalogDTO.getMovieId());
+        Price price = this.priceService.getPrice(movieCatalogDTO.getPriceId());
+        MovieCatalog movieCatalog =  this.movieCatalogConverter.createFrom(movieCatalogDTO);
+        movieCatalog.setMovie(movie);
+        movieCatalog.setPrice(price);
+        this.movieCatalogService.saveMovieCatalog(movieCatalog);
+        return new ResponseEntity<>(
+                HttpStatus.CREATED
+        );
     }
 
 }
