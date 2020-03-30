@@ -1,5 +1,6 @@
 package com.assure.movie.dto;
 
+import com.assure.movie.common.enums.StatusRental;
 import org.springframework.lang.NonNull;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class MovieRentalDTO implements DTO {
     private Date date;
     private Date returnDate;
     private Date returnedDate;
+    private StatusRental statusRental;
 
     public Long getMovieId() {
         return movieId;
@@ -54,5 +56,13 @@ public class MovieRentalDTO implements DTO {
 
     public void setReturnedDate(Date returnedDate) {
         this.returnedDate = returnedDate;
+    }
+
+    public StatusRental getStatusRental() {
+        return statusRental;
+    }
+
+    public void setStatusRental(StatusRental statusRental) {
+        this.statusRental = statusRental;
     }
 }

@@ -17,7 +17,7 @@ public class Price implements Identifiable<Long> {
     @Column(name = "price",  updatable=false, precision = 12, scale=2)
     private BigDecimal price;
 
-    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "price", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private MovieCatalog movieCatalog;
 
     public Long getId() {

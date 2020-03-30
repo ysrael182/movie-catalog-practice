@@ -41,12 +41,8 @@ public class MovieCatalogController extends ApiController {
     public ResponseEntity<MovieCatalogDTO> saveMovieCatalog(
         @RequestBody MovieCatalogDTO movieCatalogDTO
     ) {
-        Movie movie = this.movieService.getMovie(movieCatalogDTO.getMovieId());
-        Price price = this.priceService.getPrice(movieCatalogDTO.getPriceId());
         MovieCatalog movieCatalog =  this.movieCatalogConverter.createFrom(movieCatalogDTO);
-        movieCatalog.setMovie(movie);
-        movieCatalog.setPrice(price);
-        this.movieCatalogService.saveMovieCatalog(movieCatalog);
+        this.movieCatalogService.createMovieCatalog(movieCatalog, movieCatalogDTO.getMovieId(), movieCatalogDTO.getPriceId());
         return new ResponseEntity<>(
                 HttpStatus.CREATED
         );

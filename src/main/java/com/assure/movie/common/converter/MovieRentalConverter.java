@@ -22,12 +22,19 @@ public class MovieRentalConverter implements GenericConverter<MovieRental, Movie
     @Override
     public MovieRentalDTO createFrom(final MovieRental entity) {
         MovieRentalDTO movieRentalDTO = new MovieRentalDTO();
+        movieRentalDTO.setDate(entity.getDate());
+        movieRentalDTO.setReturnDate(entity.getReturnDate());
+        movieRentalDTO.setReturnedDate(entity.getReturnedDate());
+        movieRentalDTO.setStatusRental(entity.getStatusRental());
         return movieRentalDTO;
     }
     @Override
     public MovieRental updateEntity(final MovieRental entity,
                                 final MovieRentalDTO dto) {
-        //entity.set
+        entity.setDate(dto.getDate());
+        entity.setReturnDate(dto.getReturnDate());
+        entity.setReturnedDate(dto.getReturnedDate());
+        entity.setStatusRental(dto.getStatusRental());
         return entity;
     }
 }

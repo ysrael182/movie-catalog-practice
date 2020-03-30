@@ -1,5 +1,7 @@
 package com.assure.movie.model.domain;
 
+import com.assure.movie.common.enums.StatusRental;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ public class MovieRental implements Identifiable<Long> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="movie_rental_id")
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -16,8 +19,11 @@ public class MovieRental implements Identifiable<Long> {
     private Member member;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+    @JoinColumns({
+       @JoinColumn(name = "movie_id", referencedColumnName = "movie_id"),
+       @JoinColumn(name = "movie_catalog_id", referencedColumnName = "movie_catalog_id")
+    })
+    private MovieCatalog movieCatalog;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
@@ -30,6 +36,10 @@ public class MovieRental implements Identifiable<Long> {
     @Temporal(TemporalType.DATE)
     @Column(name = "returned_date")
     private Date returnedDate;
+
+    @Column(name = "status_rental", length = 10, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusRental statusRental;
 
     public Long getId() {
         return id;
@@ -71,11 +81,19 @@ public class MovieRental implements Identifiable<Long> {
         this.returnedDate = returnedDate;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public MovieCatalog getMovieCatalog() {
+        return this.movieCatalog;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovieCatalog(MovieCatalog movieCatalog) {
+        this.movieCatalog = movieCatalog;
+    }
+
+    public StatusRental getStatusRental() {
+        return statusRental;
+    }
+
+    public void setStatusRental(StatusRental statusRental) {
+        this.statusRental = statusRental;
     }
 }

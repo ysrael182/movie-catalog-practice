@@ -15,7 +15,7 @@ public class NotFoundErrorAdvice {
     @ResponseBody
     @ExceptionHandler(NotFoundErrorException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String employeeNotFoundHandler(NotFoundErrorException excepcion) {
-        return excepcion.getMessage();
+    public String entityNotFoundHandler(NotFoundErrorException exception) {
+        return exception.getMessage();
     }
 }

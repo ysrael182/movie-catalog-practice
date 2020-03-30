@@ -42,10 +42,8 @@ public class Movie implements Identifiable<Long> {
     private Set<Actor> actors;
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private MovieCatalog member;
+    private MovieCatalog movieCatalog;
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private MovieRental movieRental;
 
     public void addActor(Actor actor) {
         this.actors.add(actor);
@@ -129,19 +127,12 @@ public class Movie implements Identifiable<Long> {
         this.actors = actors;
     }
 
-    public MovieCatalog getMember() {
-        return member;
+    public MovieCatalog getMovieCatalog() {
+        return movieCatalog;
     }
 
-    public void setMember(MovieCatalog member) {
-        this.member = member;
+    public void setMovieCatalog(MovieCatalog movieCatalog) {
+        this.movieCatalog = movieCatalog;
     }
 
-    public MovieRental getMovieRental() {
-        return movieRental;
-    }
-
-    public void setMovieRental(MovieRental movieRental) {
-        this.movieRental = movieRental;
-    }
 }

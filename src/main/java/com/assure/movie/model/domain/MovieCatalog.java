@@ -11,29 +11,27 @@ import javax.persistence.*;
 )
 public class MovieCatalog implements Identifiable<MovieCatalogId> {
     @EmbeddedId
-    @Column(name = "movie_catalog_id")
     private MovieCatalogId id;
 
-    @MapsId("id")
+    @MapsId("movieId")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(
+    @JoinColumn(
             name = "movie_id",
             referencedColumnName = "movie_id")
-    })
     private Movie movie;
 
-    @MapsId("id")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(
+    @JoinColumn(
             name = "price_id",
             referencedColumnName = "price_id")
-    })
     private Price price;
 
     @Column(name = "number_copies")
     private int numberCopies;
+
+
+    @OneToOne(mappedBy = "movieCatalog",cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private MovieRental movieRental;
 
     public MovieCatalogId getId() {
         return id;
@@ -65,5 +63,13 @@ public class MovieCatalog implements Identifiable<MovieCatalogId> {
 
     public void setPrice(Price price) {
         this.price = price;
+    }
+
+    public MovieRental getMovieRental() {
+        return movieRental;
+    }
+
+    public void setMovieRental(MovieRental movieRental) {
+        this.movieRental = movieRental;
     }
 }

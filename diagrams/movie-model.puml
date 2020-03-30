@@ -5,7 +5,7 @@ package "Catalog Movie" #ddddd {
     MovieCatalog *-- Movie
     MovieCatalog *-- Price
     MovieRental o-- Member
-    MovieRental *-- Movie
+    MovieRental *-- MovieCatalog
     enum Status {
 
     }
