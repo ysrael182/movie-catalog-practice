@@ -3,13 +3,9 @@ package com.assure.movie.controller;
 import com.assure.movie.common.converter.MovieRentalConverter;
 import com.assure.movie.common.enums.StatusRental;
 import com.assure.movie.dto.MovieRentalDTO;
-import com.assure.movie.model.domain.Member;
-import com.assure.movie.model.domain.Movie;
-import com.assure.movie.model.domain.MovieCatalog;
 import com.assure.movie.model.domain.MovieRental;
-import com.assure.movie.service.MemberService;
 import com.assure.movie.service.MovieRentalService;
-import com.assure.movie.service.MovieService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,24 +17,19 @@ import javax.validation.Valid;
  * @author Israel Yasis
  */
 @RestController
+@Api(tags = "Rental Movies")
 public class MovieRentalController extends ApiController {
 
     private MovieRentalConverter  movieRentalConverter;
     private MovieRentalService movieRentalService;
-    private MemberService memberService;
-    private MovieService movieService;
 
     @Autowired
     public MovieRentalController(
         MovieRentalConverter  movieRentalConverter,
-        MovieRentalService movieRentalService,
-        MovieService movieService,
-        MemberService memberService
+        MovieRentalService movieRentalService
     ) {
         this.movieRentalConverter = movieRentalConverter;
         this.movieRentalService = movieRentalService;
-        this.movieService = movieService;
-        this.memberService = memberService;
     }
 
     @RequestMapping(value = "/rentals/", method = RequestMethod.POST)

@@ -31,16 +31,22 @@ public class MovieCatalogService {
         this.priceService = priceService;
         this.movieCatalogRepository = movieCatalogRepository;
     }
+
     @Transactional
     public MovieCatalog saveMovieCatalog(MovieCatalog movieCatalog) {
         return this.movieCatalogRepository.save(movieCatalog);
     }
 
-    public MovieCatalog createMovieCatalog(MovieCatalog movieCatalog, Long movieId, Long priceId) throws NotFoundErrorException {
+    @Transactional
+    public MovieCatalog createMovieCatalog(
+        MovieCatalog movieCatalog,
+        Long movieId,
+        Long priceId
+    ) throws NotFoundErrorException {
         Movie movie = this.movieService.getMovie(movieId);
         Price price = this.priceService.getPrice(priceId);
         movieCatalog.setMovie(movie);
         movieCatalog.setPrice(price);
-        return this.saveMovieCatalog(movieCatalog);
+        return this.movieCatalogRepository.save(movieCatalog);
     }
 }

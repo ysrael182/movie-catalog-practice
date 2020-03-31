@@ -8,6 +8,7 @@ import com.assure.movie.model.domain.Price;
 import com.assure.movie.service.MovieCatalogService;
 import com.assure.movie.service.MovieService;
 import com.assure.movie.service.PriceService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Israel Yasis
  */
 @RestController
+@Api(tags = "Catalog of Movies")
 public class MovieCatalogController extends ApiController {
 
     private PriceService priceService;

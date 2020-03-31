@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 public class Member implements Identifiable<Long> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_name", length = 25, nullable = false)

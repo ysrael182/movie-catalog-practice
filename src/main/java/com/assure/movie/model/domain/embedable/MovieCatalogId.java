@@ -13,11 +13,10 @@ public class MovieCatalogId implements Serializable {
     @Column(name = "movie_id")
     private Long movieId;
 
-    @Column(name = "movie_catalog_id")
-    private Long movieCatalogId;
+    public MovieCatalogId() {
 
-    public MovieCatalogId(Long movieId, Long movieCatalogId) {
-        this.movieCatalogId = movieCatalogId;
+    }
+    public MovieCatalogId(Long movieId) {
         this.movieId =  movieId;
     }
     public Long getMovieId() {
@@ -28,11 +27,4 @@ public class MovieCatalogId implements Serializable {
         this.movieId = movieId;
     }
 
-    public Long getMovieCatalogId() {
-        return movieCatalogId;
-    }
-
-    public void setMovieCatalogId(Long movieCatalogId) {
-        this.movieCatalogId = movieCatalogId;
-    }
 }

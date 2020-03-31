@@ -6,18 +6,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-    name = "movie_catalog",
-    uniqueConstraints= @UniqueConstraint(columnNames={"movie_id"})
+    name = "movie_catalog"
+    //uniqueConstraints= @UniqueConstraint(columnNames={"movie_id"})
 )
 public class MovieCatalog implements Identifiable<MovieCatalogId> {
+
     @EmbeddedId
     private MovieCatalogId id;
 
     @MapsId("movieId")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "movie_id",
-            referencedColumnName = "movie_id")
     private Movie movie;
 
     @OneToOne(fetch = FetchType.LAZY)

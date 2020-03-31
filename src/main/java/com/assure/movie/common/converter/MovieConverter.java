@@ -29,6 +29,7 @@ public class MovieConverter implements GenericConverter<Movie, MovieDTO> {
 
         entity.setTitle(dto.getTitle());
         entity.setRate(dto.getRate());
+        entity.setDescription(dto.getDescription());
         return entity;
     }
 }
