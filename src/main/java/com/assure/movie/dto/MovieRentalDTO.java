@@ -9,6 +9,9 @@ import java.util.Date;
  * @author Israel Yasis
  */
 public class MovieRentalDTO implements DTO {
+
+    private Long id;
+
     @NonNull
     private Long movieId;
     @NonNull
@@ -64,5 +67,13 @@ public class MovieRentalDTO implements DTO {
 
     public void setStatusRental(StatusRental statusRental) {
         this.statusRental = statusRental;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

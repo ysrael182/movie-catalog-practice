@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * @author Israel Yasis
@@ -31,6 +33,9 @@ public class MemberService {
         return this.memberRepository.findById(id).orElseThrow(() ->
                 new NotFoundErrorException("Not found member with id: "+ id)
         );
+    }
+    public List<Member> getMembers() {
+        return this.memberRepository.findAll();
     }
     @Transactional
     public Member saveMember(Member member) {

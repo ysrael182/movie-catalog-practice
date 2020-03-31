@@ -21,6 +21,9 @@ public class MovieConverter implements GenericConverter<Movie, MovieDTO> {
         MovieDTO movieDTO = new MovieDTO();
         movieDTO.setTitle(entity.getTitle());
         movieDTO.setRate(entity.getRate());
+        movieDTO.setId(entity.getId());
+        movieDTO.setRegisteringUser(entity.getRegisteringUser());
+        movieDTO.setUpdatingUser(entity.getUpdatingUser());
         return movieDTO;
     }
     @Override

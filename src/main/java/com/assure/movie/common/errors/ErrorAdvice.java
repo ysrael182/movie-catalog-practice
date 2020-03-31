@@ -16,6 +16,7 @@ import java.util.Date;
 public class ErrorAdvice {
 
     @ExceptionHandler(NotFoundErrorException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<?>  entityNotFoundHandler(NotFoundErrorException exception) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), "");
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);

@@ -4,7 +4,6 @@ import com.assure.movie.common.converter.ActorConverter;
 import com.assure.movie.common.converter.MovieConverter;
 import com.assure.movie.dto.ActorDTO;
 import com.assure.movie.dto.MovieDTO;
-import com.assure.movie.dto.domain.BuilderMovieModel;
 import com.assure.movie.model.domain.Actor;
 import com.assure.movie.model.domain.Movie;
 import com.assure.movie.service.MovieService;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

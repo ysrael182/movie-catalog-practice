@@ -12,7 +12,7 @@ import java.util.List;
  * @author Israel Yasis
  */
 public class MovieDTO implements DTO {
-
+    private Long id;
     @NonNull
     private String title;
     @Size(min = 3, max = 255)
@@ -79,5 +79,13 @@ public class MovieDTO implements DTO {
 
     public void setUpdatingUser(String updatingUser) {
         this.updatingUser = updatingUser;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

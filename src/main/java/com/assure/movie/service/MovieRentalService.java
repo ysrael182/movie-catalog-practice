@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Israel Yasis
@@ -42,14 +43,20 @@ public class MovieRentalService {
                 -> new NotFoundErrorException("Not found movie rental with id: "+ id));
     }
 
+    public List<MovieRental> getMovieRentals() {
+        return this.movieRentalRepository.findAll();
+    }
+
     public MovieRental returnMovieRental(Long id, StatusRental statusRental) {
         MovieRental movieRental = this.getMovieRental(id);
         movieRental.setStatusRental(StatusRental.RETURNED);
         MovieCatalog movieCatalog = movieRental.getMovieCatalog();
         movieCatalog.setNumberCopies(movieCatalog.getNumberCopies()  + 1);
         movieRental.setMovieCatalog(movieCatalog);
+        movieRental.setReturnedDate(new Date());
         return this.saveMovieRental(movieRental);
     }
+
     @Transactional
     public MovieRental createMovieRental(
         MovieRental movieRental,
@@ -57,11 +64,15 @@ public class MovieRentalService {
         Long memberId
     ) throws NotFoundErrorException {
         MovieCatalog movieCatalog = this.movieService.getMovie(movieId).getMovieCatalog();
+        if(movieCatalog == null) {
+            throw new NotFoundErrorException("Not found movie catalog with id: "+ movieId);
+        }
         movieCatalog.setNumberCopies(movieCatalog.getNumberCopies() - 1);
         this.movieCatalogService.saveMovieCatalog(movieCatalog);
         movieRental.setMember(this.memberService.getMember(memberId));
         movieRental.setMovieCatalog(movieCatalog);
-        movieRental.setReturnedDate(this.returnDate());
+        movieRental.setReturnDate(this.returnDate());
+        movieRental.setReturnedDate(null);
         movieRental.setStatusRental(StatusRental.RENTED);
         return this.movieRentalRepository.save(movieRental);
     }

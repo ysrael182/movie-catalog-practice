@@ -25,6 +25,6 @@ INSERT INTO movie_catalog (movie_movie_id, number_copies, price_id) VALUES
   ( 1, 100, 1),
   ( 2, 10, 2);
 
-INSERT INTO movie_rental (date, return_date, returned_date, status_rental, member_id, movie_catalog_movie_movie_id) VALUES
-  ( null, null, null, 'RENTED', 1, 1);
+INSERT INTO movie_rental ( return_date, returned_date, status_rental, member_id, movie_catalog_movie_movie_id) VALUES
+  ( '2020-03-31', null, 'RENTED', 1, 1);
 
