@@ -20,12 +20,13 @@ public class ActorConverter implements GenericConverter<Actor, ActorDTO> {
     public ActorDTO createFrom(final Actor entity) {
         ActorDTO actorDTO = new ActorDTO();
         actorDTO.setName(entity.getName());
+        actorDTO.setActorId(entity.getId());
         return actorDTO;
     }
     @Override
     public Actor updateEntity(final Actor entity,
                                 final ActorDTO dto) {
-
+        entity.setId(dto.getActorId());
         entity.setName(dto.getName());
         return entity;
     }

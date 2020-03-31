@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author Israel Yasis
  */
@@ -31,16 +33,24 @@ public class MovieCatalogService {
         this.priceService = priceService;
         this.movieCatalogRepository = movieCatalogRepository;
     }
+    public List<MovieCatalog> getMovieCatalogs() {
+        return this.movieCatalogRepository.findAll();
+    }
     @Transactional
     public MovieCatalog saveMovieCatalog(MovieCatalog movieCatalog) {
         return this.movieCatalogRepository.save(movieCatalog);
     }
 
-    public MovieCatalog createMovieCatalog(MovieCatalog movieCatalog, Long movieId, Long priceId) throws NotFoundErrorException {
+    @Transactional
+    public MovieCatalog createMovieCatalog(
+        MovieCatalog movieCatalog,
+        Long movieId,
+        Long priceId
+    ) throws NotFoundErrorException {
         Movie movie = this.movieService.getMovie(movieId);
         Price price = this.priceService.getPrice(priceId);
         movieCatalog.setMovie(movie);
         movieCatalog.setPrice(price);
-        return this.saveMovieCatalog(movieCatalog);
+        return this.movieCatalogRepository.save(movieCatalog);
     }
 }

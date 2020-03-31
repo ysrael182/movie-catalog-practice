@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
  * @author Israel Yasis
  */
 public class MemberDTO implements DTO {
+    private Long id;
     @Email(message = "Email should be valid")
     private String userName;
     private String name;
@@ -33,5 +34,13 @@ public class MemberDTO implements DTO {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

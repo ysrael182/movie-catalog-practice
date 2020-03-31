@@ -17,6 +17,10 @@ public class MemberConverter implements GenericConverter<Member, MemberDTO> {
     @Override
     public MemberDTO createFrom(final Member entity) {
         MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setUserName(entity.getUserName());
+        memberDTO.setName(entity.getName());
+        memberDTO.setTelephone(entity.getTelephone());
+        memberDTO.setId(entity.getId());
         return memberDTO;
     }
     @Override

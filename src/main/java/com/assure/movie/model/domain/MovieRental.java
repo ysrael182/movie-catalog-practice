@@ -10,7 +10,7 @@ import java.util.Date;
 public class MovieRental implements Identifiable<Long> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="movie_rental_id")
     private Long id;
 
@@ -19,10 +19,6 @@ public class MovieRental implements Identifiable<Long> {
     private Member member;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-       @JoinColumn(name = "movie_id", referencedColumnName = "movie_id"),
-       @JoinColumn(name = "movie_catalog_id", referencedColumnName = "movie_catalog_id")
-    })
     private MovieCatalog movieCatalog;
 
     @Temporal(TemporalType.DATE)

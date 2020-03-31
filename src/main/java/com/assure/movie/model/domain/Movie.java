@@ -12,7 +12,7 @@ public class Movie implements Identifiable<Long> {
 
     @Id
     @Column(name="movie_id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title", length = 100, nullable = false)
@@ -29,10 +29,10 @@ public class Movie implements Identifiable<Long> {
     @Enumerated(EnumType.STRING)
     private Rate rate;
 
-    @Column(name = "registering_user", length = 255, nullable = false)
+    @Column(name = "registering_user", length = 255, nullable = true)
     private String registeringUser;
 
-    @Column(name = "updating_user", length = 255, nullable = false)
+    @Column(name = "updating_user", length = 255, nullable = true)
     private String updatingUser;
 
     @Column(name="deleted", columnDefinition="tinyint(1) default 0")

@@ -7,7 +7,8 @@ package "Catalog Movie" #ddddd {
     MovieRental o-- Member
     MovieRental *-- MovieCatalog
     enum Status {
-
+        RETURNED
+        RENTED
     }
     enum Rate {
         G

@@ -11,7 +11,7 @@ import java.util.Set;
 public class Actor implements Identifiable<Long> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", length = 100, nullable = false)

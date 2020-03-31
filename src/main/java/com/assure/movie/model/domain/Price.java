@@ -9,9 +9,10 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "price")
 public class Price implements Identifiable<Long> {
+
     @Id
     @Column(name="price_id")
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "price",  updatable=false, precision = 12, scale=2)
